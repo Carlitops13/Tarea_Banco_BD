@@ -17,7 +17,6 @@
 
 # Eclipse
 .metadata/
-*.tmp
 *.bak
 *.swp
 *~.nib
@@ -39,11 +38,9 @@ target/
 
 # Gradle
 .gradle
-build/
 
 # NetBeans
 nbproject/private/
-build/
 nbbuild/
 dist/
 
@@ -62,7 +59,5 @@ bin/
 /.settings/
 
 # Temporary
-*.tmp
 
 # End of file
-
