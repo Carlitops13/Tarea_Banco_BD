@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class bancoForm {
+public class bancoForm extends JFrame{
     private JLabel lblSaldo;
     private JPanel mainPanel;
     private JButton btnDeposito;
@@ -17,6 +17,12 @@ public class bancoForm {
     private ArrayList<String> listaTransacciones = new ArrayList<>();
 
     public bancoForm() {
+        setTitle("Banco");
+        setSize(520, 250);
+        setContentPane(mainPanel);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setVisible(true);
         btnDeposito.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -54,13 +60,7 @@ public class bancoForm {
         }
     }
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("bancoForm");
-        frame.setContentPane(new bancoForm().mainPanel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
-    }
+
 
 
 }
