@@ -21,12 +21,12 @@ public class bancoForm {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String deposito = JOptionPane.showInputDialog("Ingrese el monto a depositar:");
-                if(deposito != null && !deposito.isEmpty()){
+                if (deposito != null && !deposito.isEmpty()) {
                     double monto = Double.parseDouble(deposito);
-                    if(monto>0){
-                        saldo+=monto;
+                    if (monto > 0) {
+                        saldo += monto;
                         lblSaldo.setText("Saldo: $" + saldo);
-                        registrarTransaccion("Depósito: $" + monto +"Saldo $" + saldo);
+                        registrarTransaccion("Depósito: $" + monto + "Saldo $" + saldo);
 
                         JOptionPane.showMessageDialog(null, "Depósito exitoso.");
                     }
@@ -42,7 +42,74 @@ public class bancoForm {
                 System.exit(0);
             }
         });
+        btnTransferencia.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                String destinatario = JOptionPane.showInputDialog("Ingrese el nombre del destinatario:");
+                if (destinatario == null || destinatario.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Debe ingresar un nombre");
+                    return;
+                }
+
+                String valor = JOptionPane.showInputDialog("Ingrese el monto a transferir:");
+                if (valor == null || valor.isEmpty()) {
+                    return;
+                }
+
+                double monto = Double.parseDouble(valor);
+
+                if (monto <= 0) {
+                    JOptionPane.showMessageDialog(null, "El monto debe ser mayor a 0.");
+                    return;
+                }
+
+                if (monto > saldo) {
+                    JOptionPane.showMessageDialog(null, "Fondos insuficientes.");
+                    return;
+                }
+
+                saldo -= monto;
+                lblSaldo.setText("Saldo: $" + saldo);
+
+                registrarTransaccion("Transferencia a " + destinatario + ": $" + monto + " | Saldo: $" + saldo);
+
+                JOptionPane.showMessageDialog(null,
+                        "Transferencia exitosa a " + destinatario + " por $" + monto);
+            }
+        });
+        btnRetiro.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                String retiro = JOptionPane.showInputDialog("Ingrese el monto a retirar:");
+                if(retiro == null || retiro.isEmpty()){
+                    return;
+                }
+
+                double monto = Double.parseDouble(retiro);
+
+                if(monto <= 0){
+                    JOptionPane.showMessageDialog(null, "El monto no puede ser negativo.");
+                    return;
+                }
+
+                if(monto > saldo){
+                    JOptionPane.showMessageDialog(null, "Saldo insuficiente.");
+                    return;
+                }
+
+                saldo -= monto;
+                lblSaldo.setText("Saldo: $" + saldo);
+
+                registrarTransaccion("Retiro: $" + monto + " | Saldo: $" + saldo);
+
+                JOptionPane.showMessageDialog(null, "Retiro exitoso.");
+            }
+        });
+
     }
+
     private void registrarTransaccion(String mensaje) {
         listaTransacciones.add(mensaje);
         txtHistorial.setText("");
