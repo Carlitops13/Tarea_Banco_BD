@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class bancoForm {
     private JLabel lblSaldo;
-    private JPanel btnSalir;
+    private JPanel mainPanel;
     private JButton btnDeposito;
     private JButton SALIRButton;
     private JButton btnRetiro;
@@ -54,7 +54,7 @@ public class bancoForm {
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("bancoForm");
-        frame.setContentPane(new bancoForm().btnSalir);
+        frame.setContentPane(new bancoForm().mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
