@@ -1,9 +1,10 @@
+import javax.swing.SwingUtilities;
 import forms.loginForm;
-import forms.bancoForm;
+
 public class Main {
     public static void main(String[] args) {
-        new loginForm();
-
-
+        SwingUtilities.invokeLater(() -> {
+            new loginForm();
+        });
     }
 }
